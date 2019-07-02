@@ -9,17 +9,19 @@
 <script src="https://sabae.cc/sakura/sakura.js"></script>
 <script src="https://sabae.cc/sakura/sakura-setting-2.js"></script>
 <script>
-
 window.onload = function() {
 	var sakura = new Sakuras([SAKURA_TOKEN, SAKURA_TOKEN2], function(id, val) {
 		console.log(id + " から " + val + " を受信！")
-		if (id == "d03") {
+		if (id == "d30") {
 			if (val == 1) {
-				mes.textContent = "1を受信！"
-				document.body.style.backgroundColor = "red"
+				mes.textContent = "おかえり"
+				document.body.style.backgroundColor = "skyblue"
 			} else if (val == 2) {
-				mes.textContent = "2を受信！"
-				document.body.style.backgroundColor = "white"
+				mes.textContent = "リラックス中"
+				document.body.style.backgroundColor = "green"
+			} else if (val == 3) {
+				mes.textContent = "リラックス完了"
+				document.body.style.backgroundColor = "yellow"
 			}
 		}
 	})
@@ -27,7 +29,15 @@ window.onload = function() {
 		sakura.send(module.value, val)
 		mes(sakura.getModule(module.value) + " へ " + Number(val) + " を発信！")
 	}
+	btn.onclick = function(){
+		  sakura.send("d30", 100)
+		  alert("送信するよ！")
+			/*
+			1 ?IOT.IN():WANT6:CONT
+			*/
+	}
 }
+
 </script>
 <style>
 body {
@@ -40,6 +50,9 @@ body {
 <body>
 
 <h1 id=mes>IoTのテスト</h1>
+
+<button id=btn>YES</button>
+
 
 </body>
 </html>
